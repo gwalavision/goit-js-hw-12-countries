@@ -13,17 +13,14 @@ const typeInput = e => {
     const inputValue = e.target.form.elements.query.value
 
     refs.countriesContainer.innerHTML = ''
+    if (inputValue === '') {
+          return toastr.warning('Please, type your query!')
+    }
 
     fetchCountries(inputValue)
         .then(addCountryMarkup)
         .catch(() => {
-            if (inputValue === '') {
-                toastr.warning('Please, type your query!')
-            }
-        })
-        .catch(() => {
-             if
-                (inputValue !== '') {
+             if (inputValue !== '') {
                 toastr.error('There is no such country found, please specify your query!')
             }    
     })
